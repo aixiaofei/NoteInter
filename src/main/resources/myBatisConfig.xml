@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="User" type="com.ai.domain.user.User" />
+		<typeAlias alias="LoginData" type="com.ai.domain.login.LoginData"/>
+		<typeAlias alias="LoveRelation" type="com.ai.domain.loveRelation.LoveRelation"/>
+		<typeAlias alias="LoveLittle" type="com.ai.domain.loveLittle.LoveLittle"/>
+		<typeAlias alias="File" type="com.ai.domain.file.File"/>
+	</typeAliases>
+</configuration>

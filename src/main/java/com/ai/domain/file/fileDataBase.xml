@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ai.domain.file.File">
+    <insert id="batchSave" parameterType="java.util.List">
+        INSERT INTO t_file(file_type, file_source, file_source_id, file_name, file_key, file_url, file_directory)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.fileType,jdbcType=INTEGER},#{item.fileSource,jdbcType=INTEGER},#{item.fileSourceId,jdbcType=INTEGER},#{item.fileName,jdbcType=VARCHAR},#{item.fileKey,jdbcType=VARCHAR},#{item.fileUrl,jdbcType=VARCHAR},#{item.fileDirectory,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+    <select id="getList" parameterType="File" resultType="File">
+        SELECT
+        file_name AS fileName,
+        file_key AS fileKey,
+        file_url AS fileUrl
+        FROM t_file
+        WHERE file_source=#{fileSource} AND file_source_id=#{fileSourceId}
+    </select>
+</mapper>
