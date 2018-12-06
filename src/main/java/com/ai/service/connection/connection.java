@@ -16,7 +16,7 @@ public class connection extends WebMvcConfigurerAdapter implements WebSocketConf
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler(),"/connection").setAllowedOrigins("*").addInterceptors(new connectionHandlerInterceptor());
+        registry.addHandler(webSocketHandler(),"/connectionSocket").setAllowedOrigins("*").addInterceptors(new connectionHandlerInterceptor());
         registry.addHandler(webSocketHandler(), "/connectionSocketJs").setAllowedOrigins("*").addInterceptors(new connectionHandlerInterceptor()).withSockJS();
     }
 

@@ -8,6 +8,7 @@ import com.ai.domain.file.File;
 import com.ai.domain.user.User;
 import com.ai.domain.loveLittle.LoveLittle;
 import com.ai.domain.loveRelation.LoveRelation;
+import com.ai.service.file.OosFileTencent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +33,40 @@ public class LoveService extends BaseService{
     @Autowired
     private FileDao fileDao;
 
+    @Autowired
+    private OosFileTencent oosFileTencent;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(LoveService.class);
 
+    /*
+     * @Author aixiaofei
+     * @Description
+     * @Date 12/5/18 7:08 PM
+     * @Param [userId]
+     * @return com.ai.domain.user.User
+     **/
     public User getLoveInfo(int userId){
         return loveRelationDao.getLoveInfo(userId);
     }
 
+    /*
+     * @Author aixiaofei
+     * @Description
+     * @Date 12/5/18 7:08 PM
+     * @Param [userId]
+     * @return com.ai.domain.loveRelation.LoveRelation
+     **/
     public LoveRelation getLoveNumber(int userId){
         return loveRelationDao.getLoveNumber(userId);
     }
 
+    /*
+     * @Author aixiaofei
+     * @Description 修改双方的爱值
+     * @Date 12/5/18 7:07 PM
+     * @Param [relations]
+     * @return void
+     **/
     @Transactional
     public void modifyLoveNumber(List<LoveRelation> relations) {
         loveRelationDao.update(relations);
@@ -63,10 +88,24 @@ public class LoveService extends BaseService{
         return page;
     }
 
+    /*
+     * @Author aixiaofei
+     * @Description
+     * @Date 12/5/18 7:07 PM
+     * @Param [loveLittle]
+     * @return com.ai.domain.loveLittle.LoveLittle
+     **/
     public LoveLittle getLoveLittleById(LoveLittle loveLittle) {
         return loveLittleDao.get(loveLittle);
     }
 
+    /*
+     * @Author aixiaofei
+     * @Description 保存点滴记录
+     * @Date 12/5/18 7:06 PM
+     * @Param [map] 存放点滴信息和文件信息
+     * @return void
+     **/
     @Transactional
     public void saveLoveLittle(Map map){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -109,6 +148,13 @@ public class LoveService extends BaseService{
         fileDao.save(files);
     }
 
+    /*
+     * @Author aixiaofei
+     * @Description 改变点滴状态 接受还是拒绝
+     * @Date 12/5/18 7:05 PM
+     * @Param [id, action] 点滴Id action=0表示接受 =1表示拒绝
+     * @return com.ai.domain.loveRelation.LoveRelation
+     **/
     @Transactional
     public LoveRelation responseLoveLittle(int id, int action) {
         LoveLittle bufLoveLittle = new LoveLittle();
@@ -146,5 +192,21 @@ public class LoveService extends BaseService{
         loveLittle.setLastModifyTime(new Date());
         loveLittleDao.changeLoveLittleStatus(loveLittle);
         return myRelation;
+    }
+
+    /*
+     * @Author aixiaofei
+     * @Description 删除点滴文件
+     * @Date 12/5/18 7:04 PM
+     * @Param [id, key] 点滴Id 文件key
+     * @return void
+     **/
+    @Transactional
+    public void deleteLittleFile(int id, String key) {
+        File file = new File();
+        file.setFileSourceId(id);
+        file.setFileKey(key);
+        fileDao.delete(file);
+        oosFileTencent.deleteFile(key);
     }
 }

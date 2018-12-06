@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ai.domain.loveLittle.LoveLittle">
+    <insert id="save" parameterType="LoveLittle">
+        INSERT INTO t_love_little(found_user_id, title, content, create_time, modify_time, love_number, important, type, status, result)
+        VALUES (#{foundUserId},#{title},#{content},#{createTime},#{lastModifyTime},#{loveNumber},#{important},#{type},#{status},#{result})
+        <selectKey keyProperty="littleId" order="AFTER" resultType="int">
+            SELECT last_insert_id()
+        </selectKey>
+    </insert>
+    <select id="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT COUNT(little_id) FROM t_love_little
+        WHERE found_user_id=#{userId} OR found_user_id=#{loveUserId}
+    </select>
+    <select id="getOne" parameterType="LoveLittle" resultType="LoveLittle">
+        SELECT
+        little_id AS littleId,
+        found_user_id AS foundUserId,
+        title AS title,
+        content AS content,
+        create_time AS createTime,
+        modify_time AS lastModifyTime,
+        love_number AS loveNumber,
+        important AS important,
+        type AS `type`,
+        status AS status,
+        result AS result
+        FROM t_love_little
+        WHERE little_id=#{littleId}
+    </select>
+    <select id="selectData" parameterType="java.util.Map" resultType="LoveLittle">
+        SELECT
+        little_id AS littleId,
+        found_user_id AS foundUserId,
+        title AS title,
+        content AS content,
+        create_time AS createTime,
+        modify_time AS lastModifyTime,
+        love_number AS loveNumber,
+        important AS important,
+        type AS `type`,
+        status AS status,
+        result AS result
+        FROM t_love_little
+        WHERE found_user_id=#{userId} OR found_user_id=#{loveUserId}
+        ORDER BY modify_time DESC
+        LIMIT #{start},#{pageSize}
+    </select>
+    <update id="changeStatus" parameterType="LoveLittle">
+        UPDATE t_love_little
+        SET
+        modify_time = #{lastModifyTime},
+        status = #{status},
+        result = #{result}
+        WHERE little_id=#{littleId}
+    </update>
+</mapper>

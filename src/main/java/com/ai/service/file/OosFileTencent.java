@@ -8,7 +8,6 @@ import com.qcloud.cos.auth.COSSigner;
 import com.qcloud.cos.http.HttpMethodName;
 import com.qcloud.cos.region.Region;
 import org.springframework.stereotype.Component;
-import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +19,7 @@ public class OosFileTencent {
     private static final String SK = "VlmY5NDpDMHxOaWDfsrb6OQDj01lLgss";
     private static final String bucketName = "lovepicture-1257159905";
     private COSClient cosClient;
-    private static final Map<String, HttpMethodName> TYPE = new HashMap<>(3);
+    private static final Map<String, HttpMethodName> TYPE = new HashMap<>(4);
 
     OosFileTencent() {
         // 1 初始化用户身份信息(secretId, secretKey)
@@ -41,5 +40,9 @@ public class OosFileTencent {
         COSSigner signer = new COSSigner();
         Date expiredTime = new Date(System.currentTimeMillis() + 180L * 1000L);
         return signer.buildAuthorizationStr(TYPE.get(type), key, cred, expiredTime);
+    }
+
+    public void deleteFile(String key) {
+        cosClient.deleteObject(bucketName, key);
     }
 }

@@ -78,4 +78,10 @@ public class LoveController extends BaseController {
         LoveRelation relation = loveService.responseLoveLittle(id, action);
         return ResponseBuilder.success("更新成功", relation);
     }
+
+    @RequestMapping(value = "/deleteLittleFile")
+    public Object deleteLittleFile(@RequestParam int id, @RequestParam String key) {
+        loveService.deleteLittleFile(id, key);
+        return ResponseBuilder.success("删除文件成功");
+    }
 }
