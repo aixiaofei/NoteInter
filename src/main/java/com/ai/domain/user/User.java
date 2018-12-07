@@ -18,6 +18,8 @@ public class User {
     private String myLoveLock;
     private String loveLock;
     private boolean single = true;
+    private int level = 0;
+    private int avatarId = 0;
 
     public int getUserId() {
         return userId;
@@ -105,5 +107,21 @@ public class User {
 
     public void setSingle(boolean single) {
         this.single = single;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(int avatarId) {
+        this.avatarId = avatarId;
     }
 }

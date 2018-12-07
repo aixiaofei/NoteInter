@@ -19,6 +19,6 @@
     </select>
     <delete id="delete" parameterType="File">
         DELETE FROM t_file
-        WHERE file_source_id=#{fileSourceId} AND file_key=#{fileKey}
+        WHERE file_source=#{fileSource} AND file_source_id=#{fileSourceId} AND file_key=#{fileKey}
     </delete>
 </mapper>

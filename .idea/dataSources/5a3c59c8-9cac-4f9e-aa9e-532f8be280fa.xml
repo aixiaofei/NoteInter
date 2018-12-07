@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="testsql@192.168.43.1">
+<dataSource name="love@192.168.43.1">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
     <root id="1">
       <ServerVersion>8.0.12</ServerVersion>
@@ -10,21 +10,21 @@
     <schema id="2" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="3" parent="1" name="mysql">
-      <Collation>utf8mb4_0900_ai_ci</Collation>
-    </schema>
-    <schema id="4" parent="1" name="performance_schema">
-      <Collation>utf8mb4_0900_ai_ci</Collation>
-    </schema>
-    <schema id="5" parent="1" name="sakila">
-      <Collation>utf8mb4_0900_ai_ci</Collation>
-    </schema>
-    <schema id="6" parent="1" name="sys">
-      <Collation>utf8mb4_0900_ai_ci</Collation>
-    </schema>
-    <schema id="7" parent="1" name="testsql">
+    <schema id="3" parent="1" name="love">
       <Current>1</Current>
       <Visible>1</Visible>
+      <Collation>utf8_general_ci</Collation>
+    </schema>
+    <schema id="4" parent="1" name="mysql">
+      <Collation>utf8mb4_0900_ai_ci</Collation>
+    </schema>
+    <schema id="5" parent="1" name="performance_schema">
+      <Collation>utf8mb4_0900_ai_ci</Collation>
+    </schema>
+    <schema id="6" parent="1" name="sakila">
+      <Collation>utf8mb4_0900_ai_ci</Collation>
+    </schema>
+    <schema id="7" parent="1" name="sys">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
     <schema id="8" parent="1" name="world">
@@ -1110,11 +1110,13 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="279" parent="7" name="t_file"/>
-    <table id="280" parent="7" name="t_login"/>
-    <table id="281" parent="7" name="t_love_little"/>
-    <table id="282" parent="7" name="t_relation"/>
-    <table id="283" parent="7" name="t_user"/>
+    <table id="279" parent="3" name="t_file"/>
+    <table id="280" parent="3" name="t_login"/>
+    <table id="281" parent="3" name="t_love_little"/>
+    <table id="282" parent="3" name="t_relation"/>
+    <table id="283" parent="3" name="t_user">
+      <Collation>swe7_swedish_ci</Collation>
+    </table>
     <column id="284" parent="279" name="file_id">
       <Position>1</Position>
       <DataType>int(11) unsigned|0s</DataType>
@@ -1147,18 +1149,21 @@
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="289" parent="279" name="file_key">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="290" parent="279" name="file_url">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="291" parent="279" name="file_directory">
       <Position>8</Position>
@@ -1184,16 +1189,19 @@
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="295" parent="280" name="login_ip">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="296" parent="280" name="login_address">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="297" parent="280" name="login_time">
       <Position>5</Position>
@@ -1217,17 +1225,20 @@
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="301" parent="281" name="title">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="302" parent="281" name="content">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="303" parent="281" name="create_time">
       <Position>5</Position>
@@ -1304,12 +1315,14 @@
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="315" parent="282" name="love_lock">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="316" parent="282" name="my_love_number">
       <Position>6</Position>
@@ -1359,11 +1372,13 @@
       <Position>4</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="324" parent="283" name="last_login_address">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="325" parent="283" name="last_login_time">
       <Position>6</Position>
@@ -1387,11 +1402,13 @@
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="329" parent="283" name="love_lock">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_0900_ai_ci</Collation>
     </column>
     <column id="330" parent="283" name="is_single">
       <Position>11</Position>
@@ -1399,7 +1416,20 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="331" parent="283" name="PRIMARY">
+    <column id="331" parent="283" name="level">
+      <Position>12</Position>
+      <DataType>int(11) unsigned zerofill|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="332" parent="283" name="avatar_id">
+      <Position>13</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="333" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
