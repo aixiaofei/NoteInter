@@ -202,11 +202,8 @@ public class LoveService extends BaseService{
      * @return void
      **/
     @Transactional
-    public void deleteLittleFile(int id, String key) {
-        File file = new File();
-        file.setFileSourceId(id);
-        file.setFileKey(key);
+    public void deleteLittleFile(File file) {
+        oosFileTencent.deleteFile(file.getFileKey());
         fileDao.delete(file);
-        oosFileTencent.deleteFile(key);
     }
 }

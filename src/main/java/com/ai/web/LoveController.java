@@ -2,6 +2,7 @@ package com.ai.web;
 
 import com.ai.common.ResponseBuilder;
 import com.ai.dao.Page;
+import com.ai.domain.file.File;
 import com.ai.domain.user.User;
 import com.ai.domain.loveRelation.LoveRelation;
 import com.ai.service.LoveService;
@@ -67,9 +68,9 @@ public class LoveController extends BaseController {
     public Object getLoveLittle(@RequestBody Map map) {
         Page page = loveService.getLoveLittleList(map);
         if (page == null) {
-            return ResponseBuilder.failure("更新失败");
+            return ResponseBuilder.failure("查询失败");
         } else {
-            return ResponseBuilder.success("更新成功", page.getData() != null ? page.getData() : new ArrayList<>());
+            return ResponseBuilder.success("查询成功", page.getData() != null ? page.getData() : new ArrayList<>());
         }
     }
 
@@ -80,8 +81,8 @@ public class LoveController extends BaseController {
     }
 
     @RequestMapping(value = "/deleteLittleFile")
-    public Object deleteLittleFile(@RequestParam int id, @RequestParam String key) {
-        loveService.deleteLittleFile(id, key);
+    public Object deleteLittleFile(@RequestBody File file) {
+        loveService.deleteLittleFile(file);
         return ResponseBuilder.success("删除文件成功");
     }
 }
